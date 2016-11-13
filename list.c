@@ -14,7 +14,7 @@
 // - the user is responsible for allocating and freeing data
 // - push back doesn't even require allocation
 
-struct {
+typedef struct {
   int used,
       allocated,
       head, // index of first element (not always 0)
@@ -29,8 +29,8 @@ struct {
   };
 
   // when a 64 byte block is emptied, add it to this stack
-  int freeblockcount;
   void *freeblocks;
+  int freeblockcount;
 } List;
 
 
@@ -51,14 +51,22 @@ struct {
 // if 854 is too large as a first allocation, the next best is to get to 30336:
 // 100..213, 256..298, 384..426, 555..597, 811..853
 
+typedef int Listelem;
 
-void delete_list(list *l, 
-void insert_list(list *l, 
+void delete_list(List *l, Listelem n) {
+}
+
+void insert_list_after(List *l, void *data, Listelem n) {
+}
+
+void insert_list_back(List *l, void *data) {
+  if (list->freeblockcount)
+}
 
 
 
 // benchmark:
 // - insert 100k elements in random positions in the list
-// - then remove the (rand() % 10k)-th
+// - then remove the (rand() % 10k)-th 90k times
 // - then insert 90k elements in random positions again
 // - then print the elements
